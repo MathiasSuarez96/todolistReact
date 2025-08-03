@@ -8,8 +8,8 @@ const Task = ({tarea , borrarTarea}) => {
   return (
     <div className={completada?"containerTarea containerTareaCompletad" : "containerTarea"}>
       <h2 className={completada?"completada" : "noCompletada"}>{tarea.tarea}</h2>
-      <button></button>
-      <button></button>
+      <button id="completar" onClick={()=>setCompletada(!completada)}>{completada?"No completada": "Completada"}</button>
+      <button onCLick={()=>borrarTarea(tarea.id)} id="eliminar">Eliminar</button>
     </div>
   )
 }

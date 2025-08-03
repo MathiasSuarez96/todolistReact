@@ -12,21 +12,23 @@ function App() {
      setTarea(e.target.value)
   }
   const addtask = e => {
-    e.preventDefault();
-    if(tarea.trim()===""){
-      alert("Debes ingresar algo")
-      return;
+  e.preventDefault();
 
-    const nuevaTarea = {
-      id: Date.now(),
-      tarea,
-      completada: false 
-    }
-    const totalTareas = [nuevaTarea,...tareas]
-    setTareas(totalTareas);
-    setTarea("")
-    }
+  if (tarea.trim() === "") {
+    alert("Debes ingresar algo");
+    return;
   }
+
+  const nuevaTarea = {
+    id: Date.now(),
+    tarea,
+    completada: false 
+  };
+
+  const totalTareas = [nuevaTarea, ...tareas];
+  setTareas(totalTareas);
+  setTarea("");
+};
 
   const borrarTarea = id => {
     const tareasActualizadas = tareas.filter(tarea => {
@@ -42,12 +44,18 @@ function App() {
       addtask = {addtask}
       tarea = {tarea}
       />
-      <Task
+      {tareas.length>1&&(
+        <button onClick={()=>setTareas([])}>Vacias tareas</button>
+      )}
+      {tareas.map(tarea =>
+        <Task
       key = {tarea.id}
       id = {tarea.id}
       tarea = {tarea}
       borrarTarea = {borrarTarea}
     />
+      )}
+      
     </>
   )
 }
